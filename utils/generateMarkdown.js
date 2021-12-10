@@ -5,7 +5,10 @@ const fse = require('fs-extra');
 const renderLicenseBadge = license => {
   switch (license.toLowerCase()) {
     case "mit":
-      return '[![License: MIT](./assets/images/license-MIT-green.svg)](./license-docs/MIT.txt)';
+      return `[![License: MIT](./assets/images/license-MIT-green.svg)](./license-docs/MIT.txt)
+
+[![Licence Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)`;
+
     case "gpl v3":
       return '[![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](./license-docs/gpl-v3.txt)';
     case "gpl v2":
@@ -38,7 +41,7 @@ const generateMarkdown = (data) => {
 
 ## License
 
-    ${renderLicenseBadge(data.license)}
+${renderLicenseBadge(data.license)}
 `;
 };
 
