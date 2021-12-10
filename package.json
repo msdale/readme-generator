@@ -20,5 +20,8 @@
   "dependencies": {
     "inquirer": "^8.2.0",
     "yargs": "^17.3.0"
+  },
+  "directories": {
+    "test": "tests"
   }
 }
