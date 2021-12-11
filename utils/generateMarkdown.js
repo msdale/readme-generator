@@ -2,14 +2,31 @@ const fse = require('fs-extra');
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-const renderLicenseBadge = (license, name) => {
+const renderLicense = (promiseParams) => {
   const year = new Date().getFullYear();
 
-  switch (license.toLowerCase()) {
+  switch (promiseParams.readmeParams.license.toLowerCase()) {
     case "mit":
-      return `[![License: MIT](./assets/images/license-MIT-green.svg)](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/pretext/MIT-pre.txt)
+      // copy the image to dist/assets/images dir...
+      // copy the pretext license file to dist/assets/license-docs/pretext dir...(substitute data if necessary)
+      // copy the full-disclosure license file to the dist/assets/license-docs/full-disclosure dir...(substitute data if necessary)
+      copyFile("./assets/images/license-MIT-green.svg", promiseParams.imagesDir + "/license-MIT-green.svg")
+      .then(targetFilePath => {
+        console.log("Copied ./assets/images/license-MIT-green.svg to " + targetFilePath);
+        return copyFile("./assets/license-docs/pretext/MIT-pre.txt", promiseParams.preTextDir + "/MIT-pre.txt");
+      })
+      .then(targetFilePath => {
+        console.log("Copied  ./assets/license-docs/pretext/MIT-pre.txt to " + targetFilePath);
+        return copyFile("./assets/license-docs/full-disclosure/MIT.txt", promiseParams.fullDisclosureDir + "/MIT.txt");
+      })
+      .then(targetFilePath => {
+        console.log("Copied  ./assets/license-docs/full-disclosure/MIT.txt to " + targetFilePath);
+      });
 
-[Full Disclosure](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/full-disclosure/MIT.txt)`;
+        return `[![License: MIT](./assets/images/license-MIT-green.svg)](./assets/license-docs/pretext/MIT-pre.txt)
+
+[Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)`;
+
 
     case "gpl v3":
       return `[![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/pretext/gpl-v3-pre.txt)
@@ -42,12 +59,16 @@ function renderLicenseLink(license) { };
 function renderLicenseSection(license) { };
 
 // TODO: Create a function to generate markdown for README
-const generateMarkdown = (data) => {
-  return `# ${data.title}
+const generateMarkdown = (promiseParams) => {
+  return `# ${promiseParams.readmeParams.title}
+
+## Description
+
+${promiseParams.readmeParams.description}
 
 ## License
 
-${renderLicenseBadge(data.license, data.name)}
+${renderLicense(promiseParams)}
 `;
 };
 
@@ -98,9 +119,9 @@ const writeFile = (filePathName, fileContent) => {
   });
 };
 
-const copyFile = (srcFilePath, targetDirPath) => {
+const copyFile = (srcFilePath, targetFilePath) => {
   return new Promise((resolve, reject) => {
-    fse.copyFile(srcFilePath, targetDirPath, err => {
+    fse.copyFile(srcFilePath, targetFilePath, err => {
       // if there's an error, reject the Promise and send the error to the Promise's `.catch()` method
       if (err) {
         reject(err);
@@ -109,13 +130,10 @@ const copyFile = (srcFilePath, targetDirPath) => {
       }
 
       // if everything went well, resolve the Promise and send the successful data to the `.then()` method
-      resolve({
-        ok: true,
-        message: 'File copied!'
-      });
+      resolve(targetFilePath);
     });
   });
 };
 
 //module.exports = { generateMarkdown, ensureDistDir, readFile, writeReadmeToDist, copySrcStyleToDist };
-module.exports = { readFile, ensureDir, writeFile, generateMarkdown };
+module.exports = { readFile, ensureDir, writeFile, copyFile, generateMarkdown };

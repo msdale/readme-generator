@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 //const { generateMarkdown, ensureDistDir, readFile, writeFileToDist, copySrcStyleToDist } = require('./utils/generateMarkdown.js');
-const { readFile, ensureDir, writeFile, generateMarkdown } = require('./utils/generateMarkdown.js');
+const { readFile, ensureDir, writeFile, copyFile, generateMarkdown } = require('./utils/generateMarkdown.js');
 const promptUser = require('./utils/gatherData.js');
 const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
 
@@ -74,8 +74,8 @@ ensureDir(promiseParams.distDir)
   /*
    * Generate the readme markdown file using promiseParams.readmeParams.
    */
-  .then(() => {
-     return generateMarkdown(promiseParams.readmeParams);
+  .then((filePathName) => {
+     return generateMarkdown(promiseParams);
   })
   .then(readmeContents => {
   /*
