@@ -1,7 +1,70 @@
 const fse = require('fs-extra');
 
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+const renderTitle = (promiseParams) => {
+  return `# ${promiseParams.readmeParams.title}
+
+  `;  
+};
+
+const renderDescription = (promiseParams) => {
+  return `
+  ## Description
+  
+  ${promiseParams.readmeParams.description}
+
+  `;  
+};
+
+const renderTableOfContents = (promiseParams) => {
+  let tableOfCont = "## Table Of Contents\n\n";
+
+  if (promiseParams.readmeParams.confirmTableOfContents) {
+    tableOfCont += promiseParams.readmeParams.confirmInstallation ? "* [Installation](#installation)\n" : ""; 
+    tableOfCont += promiseParams.readmeParams.confirmUsage ? "* [Usage](#usage)\n" : ""; 
+    tableOfCont += promiseParams.readmeParams.confirmCredits ? "* [Credits](#credits)\n" : ""; 
+    tableOfCont += promiseParams.readmeParams.license !== "none" ? "* [License](#license)\n" : ""; 
+    tableOfCont += promiseParams.readmeParams.confirmFeatures ? "* [Features](#features)\n" : ""; 
+    tableOfCont += promiseParams.readmeParams.confirmContributors ? "* [Contributors](#contributors)\n" : ""; 
+    tableOfCont += promiseParams.readmeParams.confirmTests ? "* [Tests](#tests)\n\n" : ""; 
+    return `
+
+    ${tableOfCont}
+
+    `;
+  } else return "";
+ 
+};
+
+const renderInstallation = (promiseParams) => {
+  if (promiseParams.confirmInstallation) {
+    return `## Installation
+  
+    ${promiseParams.readmeParams.installation}
+
+    `;  
+  } else return "";
+};
+
+const renderUsage = (promiseParams) => {
+  if (promiseParams.confirmUsage) {
+    return `## Usage
+  
+    ${promiseParams.readmeParams.usage}
+
+    `;  
+  } else return "";
+};
+
+const renderCredits = (promiseParams) => {
+  if (promiseParams.confirmCredits) {
+    return `## Credits
+  
+    ${promiseParams.readmeParams.credits}
+
+    `;  
+  } else return "";
+};
+
 const renderLicense = (promiseParams) => {
   const year = new Date().getFullYear();
 
@@ -23,9 +86,13 @@ const renderLicense = (promiseParams) => {
         console.log("Copied  ./assets/license-docs/full-disclosure/MIT.txt to " + targetFilePath);
       });
 
-        return `[![License: MIT](./assets/images/license-MIT-green.svg)](./assets/license-docs/pretext/MIT-pre.txt)
+      return `## License
+        
+      [![License: MIT](./assets/images/license-MIT-green.svg)](./assets/license-docs/pretext/MIT-pre.txt)
 
-[Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)`;
+      [Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)
+        
+      `;
 
 
     case "gpl v3":
@@ -45,9 +112,13 @@ const renderLicense = (promiseParams) => {
         console.log("Copied  ./assets/license-docs/full-disclosure/gpl-v3.txt to " + targetFilePath);
       });
 
-      return `[![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](./assets/license-docs/pretext/gpl-v3-pre.txt)
+      return `## License
 
-[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v3.txt)`;
+      [![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](./assets/license-docs/pretext/gpl-v3-pre.txt)
+
+      [Full Disclosure](./assets/license-docs/full-disclosure/gpl-v3.txt)
+      
+      `;
 
     case "gpl v2":
       // copy the image to dist/assets/images dir...
@@ -66,9 +137,13 @@ const renderLicense = (promiseParams) => {
         console.log("Copied  ./assets/license-docs/full-disclosure/gpl-v2.txt to " + targetFilePath);
       });
 
-      return `[![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](./assets/license-docs/pretext/gpl-v2-pre.txt)
+      return `## License
+      
+      [![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](./assets/license-docs/pretext/gpl-v2-pre.txt)
 
-[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v2.txt)`;
+      [Full Disclosure](./assets/license-docs/full-disclosure/gpl-v2.txt)
+      
+      `;
 
     case "lgpl v3":
       // copy the image to dist/assets/images dir...
@@ -87,32 +162,54 @@ const renderLicense = (promiseParams) => {
         console.log("Copied  ./assets/license-docs/full-disclosure/lgpl-v3.txt to " + targetFilePath);
       });
 
-      return `[![License: LGPL v3](./assets/images/license-LGPL_v3-blue.svg)](./assets/license-docs/pretext/lgpl-v3-pre.txt)
+      return `## License
+      
+      [![License: LGPL v3](./assets/images/license-LGPL_v3-blue.svg)](./assets/license-docs/pretext/lgpl-v3-pre.txt)
 
-[Full Disclosure](./assets/license-docs/full-disclosure/lgpl-v3.txt)`;
+      [Full Disclosure](./assets/license-docs/full-disclosure/lgpl-v3.txt)
+
+      `;
 
     default:
       return '';
   }
 };
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) { };
+const renderFeatures = (promiseParams) => {
+  if (promiseParams.confirmFeatures) {
+    return `## Features
+  
+  ${promiseParams.readmeParams.features}
 
-// [MIT](https://choosealicense.com/licenses/mit/)
+  `;  
+  }
+};
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) { };
+const renderContributors = (promiseParams) => {
+  if (promiseParams.confirmContributors) {
+    return `## Contributors
+  
+  ${promiseParams.readmeParams.contributors}
+
+  `;  
+  }
+};
+
+const renderTests = (promiseParams) => {
+  if (promiseParams.confirmTests) {
+    return `## Tests
+  
+  ${promiseParams.readmeParams.tests}
+
+  `;  
+  }
+};
 
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = (promiseParams) => {
-  return `# ${promiseParams.readmeParams.title}
+  return `${renderTitle(promiseParams)}
 
-## Description
-
-${promiseParams.readmeParams.description}
+${renderDescription(promiseParams)}
 
 ${renderTableOfContents(promiseParams)}
 
@@ -122,13 +219,11 @@ ${renderUsage(promiseParams)}
 
 ${renderCredits(promiseParams)}
 
-## License
-
 ${renderLicense(promiseParams)}
 
 ${renderFeatures(promiseParams)}
 
-${renderContributing(promiseParams)}
+${renderContributors(promiseParams)}
 
 ${renderTests(promiseParams)}
 
