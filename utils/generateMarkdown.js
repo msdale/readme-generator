@@ -2,28 +2,34 @@ const fse = require('fs-extra');
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-const renderLicenseBadge = license => {
+const renderLicenseBadge = (license, name) => {
+  const year = new Date().getFullYear();
+
   switch (license.toLowerCase()) {
     case "mit":
-      return `![License: MIT](./assets/images/license-MIT-green.svg)](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/pretext/MIT-pre.txt)
+      return `[![License: MIT](./assets/images/license-MIT-green.svg)](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/pretext/MIT-pre.txt)
 
-[Licence Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)`;
+[Full Disclosure](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/full-disclosure/MIT.txt)`;
 
     case "gpl v3":
-      return '[![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](./license-docs/gpl-v3.txt)';
+      return `[![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/pretext/gpl-v3-pre.txt)
+
+[Full Disclosure](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/full-disclosure/gpl-v3.txt)`;
+
     case "gpl v2":
-      return '[![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](./license-docs/gpl-v2.txt)';
+      return `[![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/pretext/gpl-v2-pre.txt)
+
+[Full Disclosure](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/full-disclosure/gpl-v2.txt)`;
+
     case "lgpl v3":
-      return '[![License: LGPL v3](./assets/images/license-LGPL_v3-blue.svg)](./license-docs/lgpl-v3.txt)';
+      return `[![License: LGPL v3](./assets/images/license-LGPL_v3-blue.svg)](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/pretext/lgpl-v3-pre.txt)
+
+[Full Disclosure](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/full-disclosure/lgpl-v3.txt)`;
+
     default:
       return '';
   }
 };
-//choices: ["none", "MIT", "GPL V3", "GPL V2", "LGPL V3"]
-//[![License: MIT](./assets/images/license-MIT-green.svg)](./license-docs/MIT.txt)
-//[![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](./license-docs/gpl-v3.txt)
-//[![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](./license-docs/gpl-v2.txt)
-//[![License: LGPL v3](./assets/images/license-LGPL_v3-blue.svg)](./license-docs/lgpl-v3.txt)
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
@@ -41,7 +47,7 @@ const generateMarkdown = (data) => {
 
 ## License
 
-${renderLicenseBadge(data.license)}
+${renderLicenseBadge(data.license, data.name)}
 `;
 };
 
@@ -92,9 +98,9 @@ const writeFile = (filePathName, fileContent) => {
   });
 };
 
-const copySrcStyleToDist = () => {
+const copyFile = (srcFilePath, targetDirPath) => {
   return new Promise((resolve, reject) => {
-    fse.copyFile('./src/style.css', './dist/style.css', err => {
+    fse.copyFile(srcFilePath, targetDirPath, err => {
       // if there's an error, reject the Promise and send the error to the Promise's `.catch()` method
       if (err) {
         reject(err);
