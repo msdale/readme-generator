@@ -8,15 +8,15 @@ const renderLicense = (promiseParams) => {
   switch (promiseParams.readmeParams.license.toLowerCase()) {
     case "mit":
       // copy the image to dist/assets/images dir...
-      // copy the pretext license file to dist/assets/license-docs/pretext dir...(substitute data if necessary)
-      // copy the full-disclosure license file to the dist/assets/license-docs/full-disclosure dir...(substitute data if necessary)
       copyFile("./assets/images/license-MIT-green.svg", promiseParams.imagesDir + "/license-MIT-green.svg")
       .then(targetFilePath => {
         console.log("Copied ./assets/images/license-MIT-green.svg to " + targetFilePath);
+        // copy the pretext license file to dist/assets/license-docs/pretext dir...(substitute data if necessary)
         return copyFile("./assets/license-docs/pretext/MIT-pre.txt", promiseParams.preTextDir + "/MIT-pre.txt");
       })
       .then(targetFilePath => {
         console.log("Copied  ./assets/license-docs/pretext/MIT-pre.txt to " + targetFilePath);
+        // copy the full-disclosure license file to the dist/assets/license-docs/full-disclosure dir...(substitute data if necessary)
         return copyFile("./assets/license-docs/full-disclosure/MIT.txt", promiseParams.fullDisclosureDir + "/MIT.txt");
       })
       .then(targetFilePath => {
@@ -29,19 +29,67 @@ const renderLicense = (promiseParams) => {
 
 
     case "gpl v3":
-      return `[![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/pretext/gpl-v3-pre.txt)
+      // copy the image to dist/assets/images dir...
+      copyFile("./assets/images/license-GPLv3-blue.svg", promiseParams.imagesDir + "/license-GPLv3-blue.svg")
+      .then(targetFilePath => {
+        console.log("Copied ./assets/images/license-GPLv3-blue.svg " + targetFilePath);
+        // copy the pretext license file to dist/assets/license-docs/pretext dir...(substitute data if necessary)
+        return copyFile("./assets/license-docs/pretext/gpl-v3-pre.txt", promiseParams.preTextDir + "/gpl-v3-pre.txt");
+      })
+      .then(targetFilePath => {
+        console.log("Copied  ./assets/license-docs/pretext/gpl-v3-pre.txt to " + targetFilePath);
+        // copy the full-disclosure license file to the dist/assets/license-docs/full-disclosure dir...(substitute data if necessary)
+        return copyFile("./assets/license-docs/full-disclosure/gpl-v3.txt", promiseParams.fullDisclosureDir + "/gpl-v3.txt");
+      })
+      .then(targetFilePath => {
+        console.log("Copied  ./assets/license-docs/full-disclosure/gpl-v3.txt to " + targetFilePath);
+      });
 
-[Full Disclosure](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/full-disclosure/gpl-v3.txt)`;
+      return `[![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](./assets/license-docs/pretext/gpl-v3-pre.txt)
+
+[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v3.txt)`;
 
     case "gpl v2":
-      return `[![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/pretext/gpl-v2-pre.txt)
+      // copy the image to dist/assets/images dir...
+      copyFile("./assets/images/license-GPL_v2-blue.svg", promiseParams.imagesDir + "/license-GPL_v2-blue.svg")
+      .then(targetFilePath => {
+        console.log("Copied ./assets/images/license-GPL_v2-blue.svg " + targetFilePath);
+        // copy the pretext license file to dist/assets/license-docs/pretext dir...(substitute data if necessary)
+        return copyFile("./assets/license-docs/pretext/gpl-v2-pre.txt", promiseParams.preTextDir + "/gpl-v2-pre.txt");
+      })
+      .then(targetFilePath => {
+        console.log("Copied  ./assets/license-docs/pretext/gpl-v2-pre.txt to " + targetFilePath);
+        // copy the full-disclosure license file to the dist/assets/license-docs/full-disclosure dir...(substitute data if necessary)
+        return copyFile("./assets/license-docs/full-disclosure/gpl-v2.txt", promiseParams.fullDisclosureDir + "/gpl-v2.txt");
+      })
+      .then(targetFilePath => {
+        console.log("Copied  ./assets/license-docs/full-disclosure/gpl-v2.txt to " + targetFilePath);
+      });
 
-[Full Disclosure](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/full-disclosure/gpl-v2.txt)`;
+      return `[![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](./assets/license-docs/pretext/gpl-v2-pre.txt)
+
+[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v2.txt)`;
 
     case "lgpl v3":
-      return `[![License: LGPL v3](./assets/images/license-LGPL_v3-blue.svg)](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/pretext/lgpl-v3-pre.txt)
+      // copy the image to dist/assets/images dir...
+      copyFile("./assets/images/license-LGPL_v3-blue.svg", promiseParams.imagesDir + "/license-LGPL_v3-blue.svg")
+      .then(targetFilePath => {
+        console.log("Copied ./assets/images/license-LGPL_v3-blue.svg " + targetFilePath);
+        // copy the pretext license file to dist/assets/license-docs/pretext dir...(substitute data if necessary)
+        return copyFile("./assets/license-docs/pretext/lgpl-v3-pre.txt", promiseParams.preTextDir + "/lgpl-v3-pre.txt");
+      })
+      .then(targetFilePath => {
+        console.log("Copied  ./assets/license-docs/pretext/lgpl-v3-pre.txt to " + targetFilePath);
+        // copy the full-disclosure license file to the dist/assets/license-docs/full-disclosure dir...(substitute data if necessary)
+        return copyFile("./assets/license-docs/full-disclosure/lgpl-v3.txt", promiseParams.fullDisclosureDir + "/lgpl-v3.txt");
+      })
+      .then(targetFilePath => {
+        console.log("Copied  ./assets/license-docs/full-disclosure/lgpl-v3.txt to " + targetFilePath);
+      });
 
-[Full Disclosure](https://raw.githubusercontent.com/msdale/readme-generator/feature/fill-readme/assets/license-docs/full-disclosure/lgpl-v3.txt)`;
+      return `[![License: LGPL v3](./assets/images/license-LGPL_v3-blue.svg)](./assets/license-docs/pretext/lgpl-v3-pre.txt)
+
+[Full Disclosure](./assets/license-docs/full-disclosure/lgpl-v3.txt)`;
 
     default:
       return '';
@@ -66,10 +114,26 @@ const generateMarkdown = (promiseParams) => {
 
 ${promiseParams.readmeParams.description}
 
+${renderTableOfContents(promiseParams)}
+
+${renderInstallation(promiseParams)}
+
+${renderUsage(promiseParams)}
+
+${renderCredits(promiseParams)}
+
 ## License
 
 ${renderLicense(promiseParams)}
+
+${renderFeatures(promiseParams)}
+
+${renderContributing(promiseParams)}
+
+${renderTests(promiseParams)}
+
 `;
+
 };
 
 const readFile = (filePath) => {
