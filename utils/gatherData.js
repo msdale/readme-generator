@@ -90,14 +90,20 @@ const promptUser = () => {
     {
       type: 'confirm',
       name: 'confirmUsage',
-      message: 'Would you like to provide a usage video?',
+      message: 'Would you like to provide usage instructions?',
       default: false
     },
     {
       type: 'input',
       name: 'usage',
-      message: 'Provide a usage .mp4 file or URL to a link:',
+      message: 'Provide usage instructions:',
       when: ({ confirmUsage }) => confirmUsage
+    },
+    {
+      type: 'confirm',
+      name: 'confirmUsageVideo',
+      message: 'Are you providing a usage video (./assets/videos/usage-link.url file)?',
+      default: false
     },
     {
       type: 'confirm',

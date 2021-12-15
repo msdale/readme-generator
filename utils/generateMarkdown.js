@@ -45,12 +45,29 @@ ${promiseParams.readmeParams.installation}
 };
 
 const renderUsage = (promiseParams) => {
+  const usageStmt = "";
   if (promiseParams.readmeParams.confirmUsage) {
-    return `## Usage
+    readFile("./assets/videos/usage-link.url")
+    .then(data => {
+      console.log("Read file ./assets/videos/usage-link.url");
+      return data;
+    })
+    .then(data => {
+      usageStmt = `## Usage
 
-https://user-images.githubusercontent.com/90280725/146261730-a4c30cc8-8ae5-43e4-8087-597848e58fc0.mp4
+${promiseParams.readmeParams.usage}
+      
+## Usage Video
+
+${data}
 
 `;  
+      return;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+    return usageStmt;
   }
   return "";
 };
@@ -67,6 +84,7 @@ ${promiseParams.readmeParams.credits}
 
 const renderLicense = (promiseParams) => {
   const year = new Date().getFullYear();
+  const name = promiseParams.readmeParams.name;
 
   switch (promiseParams.readmeParams.license.toLowerCase()) {
     case "mit":
@@ -74,16 +92,26 @@ const renderLicense = (promiseParams) => {
       copyFile("./assets/images/license-MIT-green.svg", promiseParams.imagesDir + "/license-MIT-green.svg")
       .then(targetFilePath => {
         console.log("Copied ./assets/images/license-MIT-green.svg to " + targetFilePath);
-        // copy the pretext license file to dist/assets/license-docs/pretext dir...(substitute data if necessary)
-        return copyFile("./assets/license-docs/pretext/MIT-pre.txt", promiseParams.preTextDir + "/MIT-pre.txt");
+        // transform MIT pre-text to dated version
+        return readFile("./assets/license-docs/pretext/MIT-pre.txt");
+      })
+      .then(data => {
+        console.log("Read file ./assets/license-docs/pretext/MIT-pre.txt");
+        const datedNamedData = data.replace("<year>", year).replace("<fullname>", name);
+        return writeFile(promiseParams.preTextDir + "/" + "MIT-pre.txt", datedNamedData);
       })
       .then(targetFilePath => {
-        console.log("Copied  ./assets/license-docs/pretext/MIT-pre.txt to " + targetFilePath);
-        // copy the full-disclosure license file to the dist/assets/license-docs/full-disclosure dir...(substitute data if necessary)
-        return copyFile("./assets/license-docs/full-disclosure/MIT.txt", promiseParams.fullDisclosureDir + "/MIT.txt");
+        console.log("Created file " + targetFilePath);
+        // transform MIT full disclosure text to dated version
+        return readFile("./assets/license-docs/full-disclosure/MIT.txt");
+      })
+      .then(data => {
+        console.log("Read file ./assets/license-docs/full-disclosure/MIT.txt");
+        const datedNamedData = data.replace("<year>", year).replace("<fullname>", name);
+        return writeFile(promiseParams.fullDisclosureDir + "/" + "MIT.txt", datedNamedData);
       })
       .then(targetFilePath => {
-        console.log("Copied  ./assets/license-docs/full-disclosure/MIT.txt to " + targetFilePath);
+        console.log("Created file " + targetFilePath);
       })
       .catch(err => {
         console.log(err);
