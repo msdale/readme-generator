@@ -1,45 +1,64 @@
-# title
+# Title
 
 
 
 ## Description
   
-  desc
+  Description
 
 
 
 ## Table Of Contents
 
-- [title](#title)
-  - [Description](#description)
-  - [Table Of Contents](#table-of-contents)
-  - [Installation](#installation)
-  - [License](#license)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Credits](#credits)
+* [License](#license)
+* [Features](#features)
+* [Contributors](#contributors)
+* [Tests](#tests)
+
 
 
 
 
 ## Installation
 
-instruct
+installation
 
 
 
-[here](./assets/images/test.mp4)
+undefined
+
+## Credits
+
+credits
 
 
 
 ## License
 
-[![License: MIT](./assets/images/license-MIT-green.svg)](./assets/license-docs/pretext/MIT-pre.txt)
+[![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](./assets/license-docs/pretext/gpl-v2-pre.txt)
 
-[Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)
+[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v2.txt)
 
 
 
-undefined
+## Features
 
-undefined
+features
 
-undefined
+
+
+## Contributors
+
+contributors
+
+
+
+## Tests
+
+tests
+
+
 
