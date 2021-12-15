@@ -49,11 +49,16 @@ const renderUsage = (promiseParams) => {
     copyFile("./assets/images/" + promiseParams.readmeParams.usage, promiseParams.imagesDir + "/" + promiseParams.readmeParams.usage)
     .then(targetFilePath => {
       console.log("Copied ./assets/images/" + promiseParams.readmeParams.usage + " to " + targetFilePath);
-    return `## Usage
+      return;
+    })
+    .then(() => {
+      console.log("Reference 
+      return `## Usage
 
 [here](./assets/images/${promiseParams.readmeParams.usage})
 
 `;  
+
     });
   } else return "";
 };
