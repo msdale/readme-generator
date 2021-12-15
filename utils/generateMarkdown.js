@@ -3,20 +3,19 @@ const fse = require('fs-extra');
 const renderTitle = (promiseParams) => {
   return `# ${promiseParams.readmeParams.title}
 
-  `;  
+`;  
 };
 
 const renderDescription = (promiseParams) => {
-  return `
-  ## Description
+  return `## Description
   
   ${promiseParams.readmeParams.description}
 
-  `;  
+`;  
 };
 
 const renderTableOfContents = (promiseParams) => {
-  let tableOfCont = "## Table Of Contents\n\n";
+  let tableOfCont = "";
 
   if (promiseParams.readmeParams.confirmTableOfContents) {
     tableOfCont += promiseParams.readmeParams.confirmInstallation ? "* [Installation](#installation)\n" : ""; 
@@ -26,42 +25,46 @@ const renderTableOfContents = (promiseParams) => {
     tableOfCont += promiseParams.readmeParams.confirmFeatures ? "* [Features](#features)\n" : ""; 
     tableOfCont += promiseParams.readmeParams.confirmContributors ? "* [Contributors](#contributors)\n" : ""; 
     tableOfCont += promiseParams.readmeParams.confirmTests ? "* [Tests](#tests)\n\n" : ""; 
-    return `
+    return `## Table Of Contents
 
-    ${tableOfCont}
+${tableOfCont}
 
-    `;
+`;
   } else return "";
  
 };
 
 const renderInstallation = (promiseParams) => {
-  if (promiseParams.confirmInstallation) {
+  if (promiseParams.readmeParams.confirmInstallation) {
     return `## Installation
-  
-    ${promiseParams.readmeParams.installation}
 
-    `;  
+${promiseParams.readmeParams.installation}
+
+`;  
   } else return "";
 };
 
 const renderUsage = (promiseParams) => {
-  if (promiseParams.confirmUsage) {
+  if (promiseParams.readmeParams.confirmUsage) {
+    copyFile("./assets/images/" + promiseParams.readmeParams.usage, promiseParams.imagesDir + "/" + promiseParams.readmeParams.usage)
+    .then(targetFilePath => {
+      console.log("Copied ./assets/images/" + promiseParams.readmeParams.usage + " to " + targetFilePath);
     return `## Usage
-  
-    ${promiseParams.readmeParams.usage}
 
-    `;  
+[here](./assets/images/${promiseParams.readmeParams.usage})
+
+`;  
+    });
   } else return "";
 };
 
 const renderCredits = (promiseParams) => {
-  if (promiseParams.confirmCredits) {
+  if (promiseParams.readmeParams.confirmCredits) {
     return `## Credits
-  
-    ${promiseParams.readmeParams.credits}
 
-    `;  
+${promiseParams.readmeParams.credits}
+
+`;  
   } else return "";
 };
 
@@ -87,12 +90,12 @@ const renderLicense = (promiseParams) => {
       });
 
       return `## License
-        
-      [![License: MIT](./assets/images/license-MIT-green.svg)](./assets/license-docs/pretext/MIT-pre.txt)
 
-      [Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)
-        
-      `;
+[![License: MIT](./assets/images/license-MIT-green.svg)](./assets/license-docs/pretext/MIT-pre.txt)
+
+[Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)
+
+`;
 
 
     case "gpl v3":
@@ -114,11 +117,11 @@ const renderLicense = (promiseParams) => {
 
       return `## License
 
-      [![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](./assets/license-docs/pretext/gpl-v3-pre.txt)
+[![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](./assets/license-docs/pretext/gpl-v3-pre.txt)
 
-      [Full Disclosure](./assets/license-docs/full-disclosure/gpl-v3.txt)
-      
-      `;
+[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v3.txt)
+
+`;
 
     case "gpl v2":
       // copy the image to dist/assets/images dir...
@@ -138,12 +141,12 @@ const renderLicense = (promiseParams) => {
       });
 
       return `## License
-      
-      [![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](./assets/license-docs/pretext/gpl-v2-pre.txt)
 
-      [Full Disclosure](./assets/license-docs/full-disclosure/gpl-v2.txt)
-      
-      `;
+[![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](./assets/license-docs/pretext/gpl-v2-pre.txt)
+
+[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v2.txt)
+
+`;
 
     case "lgpl v3":
       // copy the image to dist/assets/images dir...
@@ -163,12 +166,12 @@ const renderLicense = (promiseParams) => {
       });
 
       return `## License
-      
-      [![License: LGPL v3](./assets/images/license-LGPL_v3-blue.svg)](./assets/license-docs/pretext/lgpl-v3-pre.txt)
 
-      [Full Disclosure](./assets/license-docs/full-disclosure/lgpl-v3.txt)
+[![License: LGPL v3](./assets/images/license-LGPL_v3-blue.svg)](./assets/license-docs/pretext/lgpl-v3-pre.txt)
 
-      `;
+[Full Disclosure](./assets/license-docs/full-disclosure/lgpl-v3.txt)
+
+`;
 
     default:
       return '';
@@ -176,32 +179,32 @@ const renderLicense = (promiseParams) => {
 };
 
 const renderFeatures = (promiseParams) => {
-  if (promiseParams.confirmFeatures) {
+  if (promiseParams.readmeParams.confirmFeatures) {
     return `## Features
-  
-  ${promiseParams.readmeParams.features}
 
-  `;  
+${promiseParams.readmeParams.features}
+
+`;  
   }
 };
 
 const renderContributors = (promiseParams) => {
-  if (promiseParams.confirmContributors) {
+  if (promiseParams.readmeParams.confirmContributors) {
     return `## Contributors
-  
-  ${promiseParams.readmeParams.contributors}
 
-  `;  
+${promiseParams.readmeParams.contributors}
+
+`;  
   }
 };
 
 const renderTests = (promiseParams) => {
-  if (promiseParams.confirmTests) {
+  if (promiseParams.readmeParams.confirmTests) {
     return `## Tests
-  
-  ${promiseParams.readmeParams.tests}
 
-  `;  
+${promiseParams.readmeParams.tests}
+
+`;  
   }
 };
 
@@ -228,7 +231,6 @@ ${renderContributors(promiseParams)}
 ${renderTests(promiseParams)}
 
 `;
-
 };
 
 const readFile = (filePath) => {

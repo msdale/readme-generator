@@ -90,7 +90,7 @@ const promptUser = () => {
     {
       type: 'confirm',
       name: 'confirmUsage',
-      message: 'Would you like provide a usage video?',
+      message: 'Would you like to provide a usage video?',
       default: false
     },
     {
@@ -150,7 +150,7 @@ const promptUser = () => {
     {
       type: 'input',
       name: 'tests',
-      message: 'Provide an instruction set for issuing tests',
+      message: 'Provide an instruction set for issuing tests:',
       when: ({ confirmTests }) => confirmTests
     }
   ]);
