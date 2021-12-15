@@ -1,4 +1,4 @@
-# Title
+# title
 
 
 
@@ -10,55 +10,25 @@
 
 ## Table Of Contents
 
-* [Installation](#installation)
 * [Usage](#usage)
-* [Credits](#credits)
-* [License](#license)
-* [Features](#features)
-* [Contributors](#contributors)
-* [Tests](#tests)
 
 
 
 
 
-## Installation
 
-installation
-
-
+## Usage
+[here](./assets/images/test.mp4)
 
 
 
-## Credits
-
-credits
 
 
 
-## License
 
-[![License: GPL v2](./assets/images/license-GPL_v2-blue.svg)](./assets/license-docs/pretext/gpl-v2-pre.txt)
+undefined
 
-[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v2.txt)
+undefined
 
-
-
-## Features
-
-features
-
-
-
-## Contributors
-
-contribs
-
-
-
-## Tests
-
-testing
-
-
+undefined
 

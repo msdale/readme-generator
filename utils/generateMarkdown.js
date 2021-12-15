@@ -45,7 +45,6 @@ ${promiseParams.readmeParams.installation}
 };
 
 const renderUsage = (promiseParams) => {
-  let usageContent = "";
   if (!promiseParams.readmeParams.confirmUsage) {
     return "";
   } 
@@ -53,21 +52,15 @@ const renderUsage = (promiseParams) => {
   copyFile("./assets/images/" + promiseParams.readmeParams.usage, promiseParams.imagesDir + "/" + promiseParams.readmeParams.usage)
     .then(targetFilePath => {
       console.log("Copied ./assets/images/" + promiseParams.readmeParams.usage + " to " + targetFilePath);
-      return;
-    })
-    .then(() => {
-      console.log("Reference Usage video in README.md under Usage subtitle");
-      usageContent = `## Usage
-
-[here](./assets/images/${promiseParams.readmeParams.usage})
-
-`;  
     })
     .catch(err => {
       console.log(err);
     });
 
-  return usageContent;
+  return `## Usage
+[here](./assets/images/${promiseParams.readmeParams.usage})
+
+`;  
 };
 
 const renderCredits = (promiseParams) => {
@@ -99,6 +92,9 @@ const renderLicense = (promiseParams) => {
       })
       .then(targetFilePath => {
         console.log("Copied  ./assets/license-docs/full-disclosure/MIT.txt to " + targetFilePath);
+      })
+      .catch(err => {
+        console.log(err);
       });
 
       return `## License
@@ -125,6 +121,9 @@ const renderLicense = (promiseParams) => {
       })
       .then(targetFilePath => {
         console.log("Copied  ./assets/license-docs/full-disclosure/gpl-v3.txt to " + targetFilePath);
+      })
+      .catch(err => {
+        console.log(err);
       });
 
       return `## License
@@ -150,6 +149,9 @@ const renderLicense = (promiseParams) => {
       })
       .then(targetFilePath => {
         console.log("Copied  ./assets/license-docs/full-disclosure/gpl-v2.txt to " + targetFilePath);
+      })
+      .catch(err => {
+        console.log(err);
       });
 
       return `## License
@@ -175,6 +177,9 @@ const renderLicense = (promiseParams) => {
       })
       .then(targetFilePath => {
         console.log("Copied  ./assets/license-docs/full-disclosure/lgpl-v3.txt to " + targetFilePath);
+      })
+      .catch(err => {
+        console.log(err);
       });
 
       return `## License
