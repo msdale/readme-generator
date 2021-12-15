@@ -4,7 +4,7 @@
 
 ## Description
   
-  Description
+  desc
 
 
 
@@ -28,7 +28,7 @@ installation
 
 
 
-undefined
+
 
 ## Credits
 
@@ -52,13 +52,13 @@ features
 
 ## Contributors
 
-contributors
+contribs
 
 
 
 ## Tests
 
-tests
+testing
 
 
 
