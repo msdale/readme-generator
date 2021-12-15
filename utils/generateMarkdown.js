@@ -45,22 +45,29 @@ ${promiseParams.readmeParams.installation}
 };
 
 const renderUsage = (promiseParams) => {
-  if (promiseParams.readmeParams.confirmUsage) {
-    copyFile("./assets/images/" + promiseParams.readmeParams.usage, promiseParams.imagesDir + "/" + promiseParams.readmeParams.usage)
+  const usageContent = "";
+  if (!promiseParams.readmeParams.confirmUsage) {
+    return "";
+  } 
+
+  copyFile("./assets/images/" + promiseParams.readmeParams.usage, promiseParams.imagesDir + "/" + promiseParams.readmeParams.usage)
     .then(targetFilePath => {
       console.log("Copied ./assets/images/" + promiseParams.readmeParams.usage + " to " + targetFilePath);
       return;
     })
     .then(() => {
-      console.log("Reference 
-      return `## Usage
+      console.log("Reference Usage video in README.md under Usage subtitle");
+      usageContent = `## Usage
 
 [here](./assets/images/${promiseParams.readmeParams.usage})
 
 `;  
-
+    })
+    .catch(err => {
+      console.log(err);
     });
-  } else return "";
+
+  return usageContent;
 };
 
 const renderCredits = (promiseParams) => {
