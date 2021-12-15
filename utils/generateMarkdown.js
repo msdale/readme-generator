@@ -30,7 +30,7 @@ const renderTableOfContents = (promiseParams) => {
 ${tableOfCont}
 
 `;
-  } else return "";
+  } else return null;
  
 };
 
@@ -41,26 +41,18 @@ const renderInstallation = (promiseParams) => {
 ${promiseParams.readmeParams.installation}
 
 `;  
-  } else return "";
+  } else return null;
 };
 
 const renderUsage = (promiseParams) => {
-  if (!promiseParams.readmeParams.confirmUsage) {
-    return "";
-  } 
+  if (promiseParams.readmeParams.confirmUsage) {
+    return `## Usage
 
-  copyFile("./assets/images/" + promiseParams.readmeParams.usage, promiseParams.imagesDir + "/" + promiseParams.readmeParams.usage)
-    .then(targetFilePath => {
-      console.log("Copied ./assets/images/" + promiseParams.readmeParams.usage + " to " + targetFilePath);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-
-  return `## Usage
-[here](./assets/images/${promiseParams.readmeParams.usage})
+https://user-images.githubusercontent.com/90280725/146261730-a4c30cc8-8ae5-43e4-8087-597848e58fc0.mp4
 
 `;  
+  }
+  return null;
 };
 
 const renderCredits = (promiseParams) => {
@@ -70,7 +62,7 @@ const renderCredits = (promiseParams) => {
 ${promiseParams.readmeParams.credits}
 
 `;  
-  } else return "";
+  } else return null;
 };
 
 const renderLicense = (promiseParams) => {
@@ -202,7 +194,7 @@ const renderFeatures = (promiseParams) => {
 ${promiseParams.readmeParams.features}
 
 `;  
-  }
+  } else return null;
 };
 
 const renderContributors = (promiseParams) => {
@@ -212,7 +204,7 @@ const renderContributors = (promiseParams) => {
 ${promiseParams.readmeParams.contributors}
 
 `;  
-  }
+  } else return null;
 };
 
 const renderTests = (promiseParams) => {
@@ -222,7 +214,7 @@ const renderTests = (promiseParams) => {
 ${promiseParams.readmeParams.tests}
 
 `;  
-  }
+  } else return null;
 };
 
 // TODO: Create a function to generate markdown for README
