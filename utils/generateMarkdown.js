@@ -45,7 +45,7 @@ ${promiseParams.readmeParams.installation}
 };
 
 const renderUsage = (promiseParams) => {
-  const usageContent = "";
+  let usageContent = "";
   if (!promiseParams.readmeParams.confirmUsage) {
     return "";
   } 
