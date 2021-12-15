@@ -30,7 +30,7 @@ const renderTableOfContents = (promiseParams) => {
 ${tableOfCont}
 
 `;
-  } else return null;
+  } else return "";
  
 };
 
@@ -41,7 +41,7 @@ const renderInstallation = (promiseParams) => {
 ${promiseParams.readmeParams.installation}
 
 `;  
-  } else return null;
+  } else return "";
 };
 
 const renderUsage = (promiseParams) => {
@@ -52,7 +52,7 @@ https://user-images.githubusercontent.com/90280725/146261730-a4c30cc8-8ae5-43e4-
 
 `;  
   }
-  return null;
+  return "";
 };
 
 const renderCredits = (promiseParams) => {
@@ -62,7 +62,7 @@ const renderCredits = (promiseParams) => {
 ${promiseParams.readmeParams.credits}
 
 `;  
-  } else return null;
+  } else return "";
 };
 
 const renderLicense = (promiseParams) => {
@@ -194,7 +194,7 @@ const renderFeatures = (promiseParams) => {
 ${promiseParams.readmeParams.features}
 
 `;  
-  } else return null;
+  } else return "";
 };
 
 const renderContributors = (promiseParams) => {
@@ -204,7 +204,7 @@ const renderContributors = (promiseParams) => {
 ${promiseParams.readmeParams.contributors}
 
 `;  
-  } else return null;
+  } else return "";
 };
 
 const renderTests = (promiseParams) => {
@@ -214,7 +214,7 @@ const renderTests = (promiseParams) => {
 ${promiseParams.readmeParams.tests}
 
 `;  
-  } else return null;
+  } else return "";
 };
 
 // TODO: Create a function to generate markdown for README
