@@ -53,6 +53,7 @@ const renderUsage = (promiseParams) => {
       return data;
     })
     .then(data => {
+      console.log("Assign usage statement");
       usageStmt = `## Usage
 
 ${promiseParams.readmeParams.usage}
@@ -67,8 +68,10 @@ ${data}
     .catch(err => {
       console.log(err);
     });
+    console.log("return usage statement");
     return usageStmt;
   }
+  console.log("NO usage statement");
   return "";
 };
 
