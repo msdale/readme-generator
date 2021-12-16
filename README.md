@@ -4,7 +4,7 @@
 
 ## Description
   
-  Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...
+  Description
 
 
 
@@ -24,45 +24,41 @@
 
 ## Installation
 
-installation
+installation instructions
 
 
-
-## Usage
-
-https://user-images.githubusercontent.com/90280725/146261730-a4c30cc8-8ae5-43e4-8087-597848e58fc0.mp4
 
 
 
 ## Credits
 
-credits
+credits to all
 
 
 
 ## License
 
-[![License: MIT](./assets/images/license-MIT-green.svg)](./assets/license-docs/pretext/MIT-pre.txt)
+[![License: GPL v3](./assets/images/license-GPLv3-blue.svg)](./assets/license-docs/pretext/gpl-v3-pre.txt)
 
-[Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)
+[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v3.txt)
 
 
 
 ## Features
 
-features
+features-readme.md
 
 
 
 ## Contributors
 
-contribs
+me, myself and I
 
 
 
 ## Tests
 
-testing 1 2 3
+see testing demo
 
 
 
