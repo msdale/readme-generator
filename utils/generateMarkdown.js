@@ -45,7 +45,7 @@ ${promiseParams.readmeParams.installation}
 };
 
 const renderUsage = (promiseParams) => {
-  const usageStmt = "";
+  let usageStmt = "";
   if (promiseParams.readmeParams.confirmUsage) {
     readFile("./assets/videos/usage-link.url")
     .then(data => {
