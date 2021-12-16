@@ -28,11 +28,20 @@ installation
 
 
 
-[object Promise]
+## Usage
+
+see demo
+
+## Usage Video
+
+https://user-images.githubusercontent.com/90280725/146261730-a4c30cc8-8ae5-43e4-8087-597848e58fc0.mp4
+
+
+
 
 ## Credits
 
-credits to all
+credits
 
 
 
@@ -46,7 +55,7 @@ credits to all
 
 ## Features
 
-feature stuff
+features
 
 
 
@@ -58,7 +67,7 @@ contribs
 
 ## Tests
 
-testing 1 2 3 4
+testing 3 2 1
 
 
 

@@ -1,12 +1,12 @@
 const fse = require('fs-extra');
 
-const renderTitle = (promiseParams) => {
+const renderTitle = async (promiseParams) => {
   return `# ${promiseParams.readmeParams.title}
 
 `;
 };
 
-const renderDescription = (promiseParams) => {
+const renderDescription = async (promiseParams) => {
   return `## Description
   
   ${promiseParams.readmeParams.description}
@@ -14,7 +14,7 @@ const renderDescription = (promiseParams) => {
 `;
 };
 
-const renderTableOfContents = (promiseParams) => {
+const renderTableOfContents = async (promiseParams) => {
   let tableOfCont = "";
 
   if (promiseParams.readmeParams.confirmTableOfContents) {
@@ -34,7 +34,7 @@ ${tableOfCont}
 
 };
 
-const renderInstallation = (promiseParams) => {
+const renderInstallation = async (promiseParams) => {
   if (promiseParams.readmeParams.confirmInstallation) {
     return `## Installation
 
@@ -53,17 +53,18 @@ ${promiseParams.readmeParams.usage}
 
   if (promiseParams.readmeParams.confirmUsageVideo) {
     const data = await readFile("./assets/videos/usage-link.url");
+    const videoUrl = await data;
     console.log("Read file ./assets/videos/usage-link.url");
     usageStmt += `## Usage Video
 
-${data}
+${videoUrl}
 
 `;
   }
   return usageStmt;
 };
 
-const renderCredits = (promiseParams) => {
+const renderCredits = async (promiseParams) => {
   if (promiseParams.readmeParams.confirmCredits) {
     return `## Credits
 
@@ -73,7 +74,7 @@ ${promiseParams.readmeParams.credits}
   } else return "";
 };
 
-const renderLicense = (promiseParams) => {
+const renderLicense = async (promiseParams) => {
   const year = new Date().getFullYear();
   const name = promiseParams.readmeParams.name;
 
@@ -206,7 +207,7 @@ const renderLicense = (promiseParams) => {
   }
 };
 
-const renderFeatures = (promiseParams) => {
+const renderFeatures = async (promiseParams) => {
   if (promiseParams.readmeParams.confirmFeatures) {
     return `## Features
 
@@ -216,7 +217,7 @@ ${promiseParams.readmeParams.features}
   } else return "";
 };
 
-const renderContributors = (promiseParams) => {
+const renderContributors = async (promiseParams) => {
   if (promiseParams.readmeParams.confirmContributors) {
     return `## Contributors
 
@@ -226,7 +227,7 @@ ${promiseParams.readmeParams.contributors}
   } else return "";
 };
 
-const renderTests = (promiseParams) => {
+const renderTests = async (promiseParams) => {
   if (promiseParams.readmeParams.confirmTests) {
     return `## Tests
 
@@ -238,25 +239,25 @@ ${promiseParams.readmeParams.tests}
 
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = async (promiseParams) => {
-  return `${renderTitle(promiseParams)}
+  return `${await renderTitle(promiseParams)}
 
-${renderDescription(promiseParams)}
+${await renderDescription(promiseParams)}
 
-${renderTableOfContents(promiseParams)}
+${await renderTableOfContents(promiseParams)}
 
-${renderInstallation(promiseParams)}
+${await renderInstallation(promiseParams)}
 
-${renderUsage(promiseParams)}
+${await renderUsage(promiseParams)}
 
-${renderCredits(promiseParams)}
+${await renderCredits(promiseParams)}
 
-${renderLicense(promiseParams)}
+${await renderLicense(promiseParams)}
 
-${renderFeatures(promiseParams)}
+${await renderFeatures(promiseParams)}
 
-${renderContributors(promiseParams)}
+${await renderContributors(promiseParams)}
 
-${renderTests(promiseParams)}
+${await renderTests(promiseParams)}
 
 `;
 };
