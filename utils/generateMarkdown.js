@@ -237,7 +237,7 @@ ${promiseParams.readmeParams.tests}
 };
 
 // TODO: Create a function to generate markdown for README
-const generateMarkdown = (promiseParams) => {
+const generateMarkdown = async (promiseParams) => {
   return `${renderTitle(promiseParams)}
 
 ${renderDescription(promiseParams)}

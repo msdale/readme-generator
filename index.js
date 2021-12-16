@@ -75,7 +75,7 @@ ensureDir(promiseParams.distDir)
    * Generate the readme markdown file using promiseParams.readmeParams.
    */
   .then((filePathName) => {
-     return generateMarkdown(promiseParams);
+     return await generateMarkdown(promiseParams);
   })
   .then(readmeContents => {
   /*

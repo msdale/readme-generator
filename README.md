@@ -28,11 +28,11 @@ installation
 
 
 
-
+[object Promise]
 
 ## Credits
 
-credits for all
+credits to all
 
 
 
@@ -46,19 +46,19 @@ credits for all
 
 ## Features
 
-features
+feature stuff
 
 
 
 ## Contributors
 
-constribs
+contribs
 
 
 
 ## Tests
 
-testing 1 2 3
+testing 1 2 3 4
 
 
 
