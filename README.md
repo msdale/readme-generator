@@ -24,7 +24,7 @@
 
 ## Installation
 
-installation instructions
+installation
 
 
 
@@ -32,7 +32,7 @@ installation instructions
 
 ## Credits
 
-credits to all
+credits for all
 
 
 
@@ -46,19 +46,19 @@ credits to all
 
 ## Features
 
-features-readme.md
+features
 
 
 
 ## Contributors
 
-me, myself and I
+constribs
 
 
 
 ## Tests
 
-see testing demo
+testing 1 2 3
 
 
 
