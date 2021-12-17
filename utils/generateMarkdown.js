@@ -1,6 +1,8 @@
 const fse = require('fs-extra');
 
 const renderLicenseBadge = async (promiseParams) => {
+  const year = new Date().getFullYear();
+  const name = promiseParams.readmeParams.name;
 
   switch (promiseParams.readmeParams.license.toLowerCase()) {
     case "mit":
@@ -277,7 +279,7 @@ ${promiseParams.readmeParams.tests}
 
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = async (promiseParams) => {
-  return `${await renderLicenseBadge(promiseParams)}
+  const readmeContents = `${await renderLicenseBadge(promiseParams)}
   
 ${await renderTitle(promiseParams)}
 
@@ -300,6 +302,8 @@ ${await renderContributors(promiseParams)}
 ${await renderTests(promiseParams)}
 
 `;
+  promiseParams.readmeContents = readmeContents;
+  return readmeContents;
 };
 
 const readFile = (filePath) => {
