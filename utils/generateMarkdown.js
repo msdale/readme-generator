@@ -277,7 +277,9 @@ ${promiseParams.readmeParams.tests}
 
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = async (promiseParams) => {
-  return `${await renderTitle(promiseParams)}
+  return `${await renderLicenseBadge(promiseParams)}
+  
+${await renderTitle(promiseParams)}
 
 ${await renderDescription(promiseParams)}
 
