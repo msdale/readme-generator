@@ -1,10 +1,10 @@
-# README.md Generator
+# Title
 
 
 
 ## Description
   
-  Generates a README.md (markdown) file by prompting for data for README sections through the command-line.  The application can also generate a README.md file from an existing "readmeParams.json" file.  Simply enter the readmeParams.json file as the argument of the [-c] option.
+  Description
 
 
 
@@ -24,13 +24,13 @@
 
 ## Installation
 
-Clone the github repository to your local environment.  In the root directory, execute the command [./index.js or ./index.js -c <json-formatted-parameter-file>.  If no [-c] option is included, the application will prompt for the content of the README.md file.
+installation
 
 
 
 ## Usage
 
-Oops...I'll have to have some prepared text before I do this.
+see demo
 
 ## Usage Video
 
@@ -41,7 +41,7 @@ https://user-images.githubusercontent.com/90280725/146261730-a4c30cc8-8ae5-43e4-
 
 ## Credits
 
-Credits
+credits
 
 
 
@@ -67,7 +67,7 @@ contribs
 
 ## Tests
 
-y
+testing 1 2 3
 
 
 
