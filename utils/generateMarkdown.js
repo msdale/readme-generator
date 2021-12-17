@@ -268,11 +268,21 @@ ${promiseParams.readmeParams.features}
   } else return "";
 };
 
-const renderContributors = async (promiseParams) => {
-  if (promiseParams.readmeParams.confirmContributors) {
-    return `## Contributors
+const renderContributing = async (promiseParams) => {
+  if (promiseParams.readmeParams.confirmContributing) {
+    await copyFile("./assets/markdown/contributing.md", promiseParams.markdownDir + "/contributing.md")
+      .then(targetFilePath => {
+        console.log("Copied ./assets/markdown/contributing.md to " + targetFilePath);
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
-${promiseParams.readmeParams.contributors}
+    return `## Contributing
+
+${promiseParams.readmeParams.contributing}
+
+[Contributor Covenant](./assets/markdown/contributing.md)
 
 `;
   } else return "";
@@ -289,7 +299,7 @@ ${promiseParams.readmeParams.tests}
 };
 
 const renderQuestions = async (promiseParams) => {
-    return `## Questions
+  return `## Questions
 
 Any questions, please contact ${promiseParams.readmeParams.name}.
 
@@ -320,7 +330,7 @@ ${await renderLicense(promiseParams)}
 
 ${await renderFeatures(promiseParams)}
 
-${await renderContributors(promiseParams)}
+${await renderContributing(promiseParams)}
 
 ${await renderTests(promiseParams)}
 

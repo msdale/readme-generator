@@ -150,15 +150,15 @@ const promptUser = () => {
     },
     {
       type: 'confirm',
-      name: 'confirmContributors',
-      message: 'Would you like to provide a list of contributors?',
+      name: 'confirmContributing',
+      message: 'Would you like to provide a section for contributing?',
       default: false
     },
     {
       type: 'input',
-      name: 'contributors',
-      message: 'Provide a line for contributors:',
-      when: ({ confirmContributors }) => confirmContributors
+      name: 'contributing',
+      message: 'Provide a line for contributing:',
+      when: ({ confirmContributing }) => confirmContributing
     },
     {
       type: 'confirm',

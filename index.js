@@ -23,6 +23,7 @@ let promiseParams = {
   "imagesDir": "./dist/assets/images",
   "preTextDir": "./dist/assets/license-docs/pretext",
   "fullDisclosureDir": "./dist/assets/license-docs/full-disclosure",
+  "markdownDir": "./dist/assets/markdown",
   "readmeTemplatesDir": "./dist/assets/readme-templates"
 };
 console.log(promiseParams);
@@ -46,6 +47,10 @@ ensureDir(promiseParams.distDir)
   })
   .then(fullDisclosureDir => {
     console.log(fullDisclosureDir + " created.");
+    return ensureDir(promiseParams.markdownDir);
+  })
+  .then(markdownDir => {
+    console.log(markdownDir + " created.");
     return ensureDir(promiseParams.readmeTemplatesDir);
   })
   .then(readmeTemplatesDir => {
