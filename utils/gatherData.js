@@ -76,6 +76,19 @@ const promptUser = () => {
       }
     },
     {
+      type: 'input',
+      name: 'emailAddress',
+      message: 'Enter your email address (Required)',
+      validate: emailAddress => {
+        if (emailAddress) {
+          return true;
+        } else {
+          console.log('Please enter a contact email address!');
+          return false;
+        }
+      }
+    },
+    {
       type: 'confirm',
       name: 'confirmInstallation',
       message: 'Would you like to provide installation instructions?',

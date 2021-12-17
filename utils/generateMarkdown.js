@@ -277,6 +277,18 @@ ${promiseParams.readmeParams.tests}
   } else return "";
 };
 
+const renderQuestions = async (promiseParams) => {
+    return `## Questions
+
+Any questions, please contact ${promiseParams.readmeParams.name}.
+
+My email address is: ${promiseParams.readmeParams.emailAddress}
+My github profile is https://github.com/${promiseParams.readmeParams.githubUserName}
+The pertinent github repository is https://github.com/${promiseParams.readmeParams.githubUserName}/${promiseParams.readmeParams.githubRepoName}
+
+`;
+};
+
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = async (promiseParams) => {
   const readmeContents = `${await renderLicenseBadge(promiseParams)}
@@ -301,6 +313,7 @@ ${await renderContributors(promiseParams)}
 
 ${await renderTests(promiseParams)}
 
+${await renderQuestions(promiseParams)}
 `;
   promiseParams.readmeContents = readmeContents;
   return readmeContents;
