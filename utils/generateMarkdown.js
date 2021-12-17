@@ -173,7 +173,7 @@ const renderLicense = async (promiseParams) => {
 
       return `## License
 
-[Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)
+[Full Disclosure (use Raw format in github for easier reading)](./assets/license-docs/full-disclosure/MIT.txt)
 
 `;
 
@@ -194,7 +194,7 @@ const renderLicense = async (promiseParams) => {
 
       return `## License
 
-[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v3.txt)
+[Full Disclosure (use Raw format in github for easier reading)](./assets/license-docs/full-disclosure/gpl-v3.txt)
 
 `;
 
@@ -215,7 +215,7 @@ const renderLicense = async (promiseParams) => {
 
       return `## License
 
-[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v2.txt)
+[Full Disclosure (use Raw format in github for easier reading)](./assets/license-docs/full-disclosure/gpl-v2.txt)
 
 `;
 
@@ -236,7 +236,7 @@ const renderLicense = async (promiseParams) => {
 
       return `## License
 
-[Full Disclosure](./assets/license-docs/full-disclosure/lgpl-v3.txt)
+[Full Disclosure (use Raw format in github for easier reading)](./assets/license-docs/full-disclosure/lgpl-v3.txt)
 
 `;
 
