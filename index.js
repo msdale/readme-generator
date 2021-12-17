@@ -61,17 +61,12 @@ ensureDir(promiseParams.distDir)
     let filePathStrLen = promiseParams.preExistReadmeParamsfile.length;
     let dataLen = data.length;
     if (filePathStrLen > 0 && dataLen > 0) {
-      console.log("BEFORE ASSIGNING: " + data);
       promiseParams.readmeParams = JSON.parse(data);
-      console.log("AFTER ASSIGNING: " + JSON.stringify(promiseParams.readmeParams));
     }
-    console.log("promiseParams.readmeParams FIRST: " + JSON.stringify(promiseParams.readmeParams));
     return promiseParams.readmeParams ? promiseParams.readmeParams : promptUser();
   })
   .then(data => {
-    console.log("readmeParams: " + JSON.stringify(data));
     promiseParams.readmeParams = data; // reasign readmeParams in case the user provided a fresh set 
-    console.log("before write to file: " + JSON.stringify(promiseParams.readmeParams));
     return writeFile(promiseParams.distDir + "/" + promiseParams.readmeParamsFile,
       JSON.stringify(promiseParams.readmeParams));
   })
@@ -79,14 +74,12 @@ ensureDir(promiseParams.distDir)
    * Generate the readme markdown file using promiseParams.readmeParams.
    */
   .then((filePathName) => {
-    console.log("before markdown\n" + JSON.stringify(promiseParams));
     return generateMarkdown(promiseParams);
   })
   .then(readmeContents => {
   /*
    * Here's where we create and write to the new README.md file.
    */
-    console.log("after markdown\n" + JSON.stringify(promiseParams));
     return writeFile(promiseParams.distDir + "/" + promiseParams.readmeContentsFile, readmeContents);
   })
   /*

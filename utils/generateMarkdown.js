@@ -14,7 +14,6 @@ const renderLicenseBadge = async (promiseParams) => {
           return readFile("./assets/license-docs/pretext/MIT-pre.txt");
         })
         .then(data => {
-          console.log("Read file ./assets/license-docs/pretext/MIT-pre.txt");
           const datedNamedData = data.toString().replace("<year>", year).replace("<fullname>", name);
           return writeFile(promiseParams.preTextDir + "/" + "MIT-pre.txt", datedNamedData);
         })
@@ -28,21 +27,19 @@ const renderLicenseBadge = async (promiseParams) => {
       return '[![License: MIT](./assets/images/license-MIT-green.svg)](./assets/license-docs/pretext/MIT-pre.txt)';
 
     case "gpl v3":
-      // transform GPL-v3 pre-text to dated version
-      readFile("./assets/license-docs/pretext/gpl-v3-pre.txt")
+      // copy the image to dist/assets/images dir...
+      copyFile("./assets/images/license-GPLv3-blue.svg", promiseParams.imagesDir + "/license-GPLv3-blue.svg")
+        .then(targetFilePath => {
+          console.log("Copied ./assets/images/license-GPLv3-blue.svg " + targetFilePath);
+          // transform GPL-v3 pre-text to dated version
+          return readFile("./assets/license-docs/pretext/gpl-v3-pre.txt")
+        })
         .then(data => {
-          console.log("Read file ./assets/license-docs/pretext/gpl-v3-pre.txt");
           const datedNamedData = data.toString().replace("<year>", year).replace("<fullname>", name);
-          console.log(datedNamedData);
           return writeFile(promiseParams.preTextDir + "/" + "gpl-v3-pre.txt", datedNamedData);
         })
         .then(targetFilePath => {
           console.log("Created file " + targetFilePath);
-          // copy the image to dist/assets/images dir...
-          return copyFile("./assets/images/license-GPLv3-blue.svg", promiseParams.imagesDir + "/license-GPLv3-blue.svg");
-        })
-        .then(targetFilePath => {
-          console.log("Copied ./assets/images/license-GPLv3-blue.svg " + targetFilePath);
         })
         .catch(err => {
           console.log(err);
@@ -55,6 +52,15 @@ const renderLicenseBadge = async (promiseParams) => {
       copyFile("./assets/images/license-GPL_v2-blue.svg", promiseParams.imagesDir + "/license-GPL_v2-blue.svg")
         .then(targetFilePath => {
           console.log("Copied ./assets/images/license-GPL_v2-blue.svg " + targetFilePath);
+          // transform GPL-v3 pre-text to dated version
+          return readFile("./assets/license-docs/pretext/gpl-v2-pre.txt")
+        })
+        .then(data => {
+          const datedNamedData = data.toString().replace("<year>", year).replace("<fullname>", name);
+          return writeFile(promiseParams.preTextDir + "/" + "gpl-v2-pre.txt", datedNamedData);
+        })
+        .then(targetFilePath => {
+          console.log("Created file " + targetFilePath);
         })
         .catch(err => {
           console.log(err);
@@ -67,6 +73,15 @@ const renderLicenseBadge = async (promiseParams) => {
       copyFile("./assets/images/license-LGPL_v3-blue.svg", promiseParams.imagesDir + "/license-LGPL_v3-blue.svg")
         .then(targetFilePath => {
           console.log("Copied ./assets/images/license-LGPL_v3-blue.svg " + targetFilePath);
+          // transform GPL-v3 pre-text to dated version
+          return readFile("./assets/license-docs/pretext/lgpl-v3-pre.txt")
+        })
+        .then(data => {
+          const datedNamedData = data.toString().replace("<year>", year).replace("<fullname>", name);
+          return writeFile(promiseParams.preTextDir + "/" + "lgpl-v3-pre.txt", datedNamedData);
+        })
+        .then(targetFilePath => {
+          console.log("Created file " + targetFilePath);
         })
         .catch(err => {
           console.log(err);
@@ -162,7 +177,6 @@ const renderLicense = async (promiseParams) => {
       // transform MIT full disclosure text to dated version
       readFile("./assets/license-docs/full-disclosure/MIT.txt")
         .then(data => {
-          console.log("Read file ./assets/license-docs/full-disclosure/MIT.txt");
           const datedNamedData = data.toString().replace("<year>", year).replace("<fullname>", name);
           return writeFile(promiseParams.fullDisclosureDir + "/" + "MIT.txt", datedNamedData);
         })
@@ -175,17 +189,16 @@ const renderLicense = async (promiseParams) => {
 
       return `## License
 
-[Full Disclosure (use Raw format in github for easier reading)](./assets/license-docs/full-disclosure/MIT.txt)
+[Full Disclosure](./assets/license-docs/full-disclosure/MIT.txt)
 
 `;
 
     case "gpl v3":
       // transform GPL-v3 full disclosure text to dated version
-      readFile("./assets/license-docs/full-disclosure/gpl-v3.txt")
+      readFile("./assets/license-docs/full-disclosure/gpl-v3.md")
         .then(data => {
-          console.log("Read file ./assets/license-docs/full-disclosure/gpl-v3.txt");
           const datedNamedData = data.toString().replace("<year>", year).replace("<fullname>", name);
-          return writeFile(promiseParams.fullDisclosureDir + "/" + "gpl-v3.txt", datedNamedData);
+          return writeFile(promiseParams.fullDisclosureDir + "/" + "gpl-v3.md", datedNamedData);
         })
         .then(targetFilePath => {
           console.log("Created file " + targetFilePath);
@@ -196,17 +209,16 @@ const renderLicense = async (promiseParams) => {
 
       return `## License
 
-[Full Disclosure (use Raw format in github for easier reading)](./assets/license-docs/full-disclosure/gpl-v3.txt)
+[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v3.md)
 
 `;
 
     case "gpl v2":
       // transform GPL-v2 full disclosure text to dated version
-      readFile("./assets/license-docs/full-disclosure/gpl-v2.txt")
+      readFile("./assets/license-docs/full-disclosure/gpl-v2.md")
         .then(data => {
-          console.log("Read file ./assets/license-docs/full-disclosure/gpl-v2.txt");
           const datedNamedData = data.toString().replace("<year>", year).replace("<fullname>", name);
-          return writeFile(promiseParams.fullDisclosureDir + "/" + "gpl-v2.txt", datedNamedData);
+          return writeFile(promiseParams.fullDisclosureDir + "/" + "gpl-v2.md", datedNamedData);
         })
         .then(targetFilePath => {
           console.log("Created file " + targetFilePath);
@@ -217,17 +229,16 @@ const renderLicense = async (promiseParams) => {
 
       return `## License
 
-[Full Disclosure (use Raw format in github for easier reading)](./assets/license-docs/full-disclosure/gpl-v2.txt)
+[Full Disclosure](./assets/license-docs/full-disclosure/gpl-v2.md)
 
 `;
 
     case "lgpl v3":
       // transform LGPL-v3 full disclosure text to dated version
-      readFile("./assets/license-docs/full-disclosure/lgpl-v3.txt")
+      readFile("./assets/license-docs/full-disclosure/lgpl-v3.md")
         .then(data => {
-          console.log("Read file ./assets/license-docs/full-disclosure/lgpl-v3.txt");
           const datedNamedData = data.toString().replace("<year>", year).replace("<fullname>", name);
-          return writeFile(promiseParams.fullDisclosureDir + "/" + "lgpl-v3.txt", datedNamedData);
+          return writeFile(promiseParams.fullDisclosureDir + "/" + "lgpl-v3.md", datedNamedData);
         })
         .then(targetFilePath => {
           console.log("Created file " + targetFilePath);
@@ -238,7 +249,7 @@ const renderLicense = async (promiseParams) => {
 
       return `## License
 
-[Full Disclosure (use Raw format in github for easier reading)](./assets/license-docs/full-disclosure/lgpl-v3.txt)
+[Full Disclosure](./assets/license-docs/full-disclosure/lgpl-v3.md)
 
 `;
 
@@ -291,7 +302,7 @@ The pertinent github repository is https://github.com/${promiseParams.readmePara
 
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = async (promiseParams) => {
-  const readmeContents = `${await renderLicenseBadge(promiseParams)}
+  let readmeContents = `${await renderLicenseBadge(promiseParams)}
   
 ${await renderTitle(promiseParams)}
 
