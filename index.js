@@ -9,7 +9,7 @@ const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
  * Force argv.c (-c <filepath>) to empty string instead of "undefined" if it is NOT entered.
  */
 const preExistReadmeParamsFile = argv.c ? argv.c : "";
-
+console.log(preExistReadmeParamsFile);
 /*
  * All the parameters needed to fulfill the promise chain
  */
@@ -25,6 +25,7 @@ let promiseParams = {
   "fullDisclosureDir": "./dist/assets/license-docs/full-disclosure",
   "readmeTemplatesDir": "./dist/assets/readme-templates"
 };
+console.log(promiseParams);
 
 /*
  * Start the promise chain...
@@ -49,7 +50,7 @@ ensureDir(promiseParams.distDir)
   })
   .then(readmeTemplatesDir => {
     console.log(readmeTemplatesDir + " created.");
-    readFile(promiseParams.preExistReadmeParamsfile)
+    return readFile(promiseParams.preExistReadmeParamsfile);
   })
   /*
    * If the preExistReadmeParamsFile is entered on the command-line,
@@ -57,17 +58,20 @@ ensureDir(promiseParams.distDir)
    *    AND the user will NOT be prompted for any readme generation parameters. 
    */
   .then(data => {
-
-    if (promiseParams.preExistReadmeParamsfile.length > 0 && data.length > 0) {
-      promiseParams.readmeParamsFile = promiseParams.preExistReadmeParamsfile;
-      promiseParams.readmeParams = data;
+    let filePathStrLen = promiseParams.preExistReadmeParamsfile.length;
+    let dataLen = data.length;
+    if (filePathStrLen > 0 && dataLen > 0) {
+      console.log("BEFORE ASSIGNING: " + data);
+      promiseParams.readmeParams = JSON.parse(data);
+      console.log("AFTER ASSIGNING: " + promiseParams.readmeParams);
     }
-
-    return promiseParams.readmeParams.length === 0 ? promptUser() : promiseParams.readmeParams;
+    console.log("promiseParams.readmeParams FIRST: " + promiseParams.readmeParams);
+    return promiseParams.readmeParams ? promiseParams.readmeParams : promptUser();
   })
   .then(data => {
+    console.log("readmeParams: " + data);
     promiseParams.readmeParams = data; // reasign readmeParams in case the user provided a fresh set 
-
+    console.log("before write to file: " + promiseParams.readmeParams);
     return writeFile(promiseParams.distDir + "/" + promiseParams.readmeParamsFile,
       JSON.stringify(promiseParams.readmeParams));
   })
@@ -75,6 +79,7 @@ ensureDir(promiseParams.distDir)
    * Generate the readme markdown file using promiseParams.readmeParams.
    */
   .then((filePathName) => {
+    console.log(promiseParams);
     return generateMarkdown(promiseParams);
   })
   .then(readmeContents => {

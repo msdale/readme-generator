@@ -129,6 +129,7 @@ const renderLicense = async (promiseParams) => {
         .then(data => {
           console.log("Read file ./assets/license-docs/pretext/gpl-v3-pre.txt");
           const datedNamedData = data.toString().replace("<year>", year).replace("<fullname>", name);
+          console.log(datedNamedData);
           return writeFile(promiseParams.preTextDir + "/" + "gpl-v3-pre.txt", datedNamedData);
         })
         .then(targetFilePath => {
