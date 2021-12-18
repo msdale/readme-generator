@@ -36,7 +36,7 @@ To execute the application, from the root directory of the readme-generator repo
 ## Usage Video
 
 
-
+https://user-images.githubusercontent.com/90280725/146261730-a4c30cc8-8ae5-43e4-8087-597848e58fc0.mp4
 
 
 
