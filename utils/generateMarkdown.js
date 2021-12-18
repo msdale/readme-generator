@@ -357,7 +357,6 @@ const readFile = (filePath) => {
 };
 
 const ensureDir = (dirPath) => {
-  console.log(dirPath);
   return new Promise((resolve, reject) => {
     fse.ensureDir(dirPath, err => {
       if (err) {
