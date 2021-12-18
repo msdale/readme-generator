@@ -9,7 +9,7 @@ const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
  * Force argv.c (-c <filepath>) to empty string instead of "undefined" if it is NOT entered.
  */
 const preExistReadmeParamsFile = argv.c ? argv.c : "";
-console.log(preExistReadmeParamsFile);
+
 /*
  * All the parameters needed to fulfill the promise chain
  */
@@ -26,7 +26,6 @@ let promiseParams = {
   "markdownDir": "./dist/assets/markdown",
   "readmeTemplatesDir": "./dist/assets/readme-templates"
 };
-console.log(promiseParams);
 
 /*
  * Start the promise chain...
