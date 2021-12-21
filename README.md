@@ -31,7 +31,13 @@ We will assume the local computing environment already has a recent version of n
 
 ## Usage
 
-To execute the application, from the root directory of the readme-generator repository clone, run the command './index.js' or 'node index.js'.  This will walk the user through a series of questions.  You'll have to work through required vs default answers. The actual answers are not as important as all the sections you decide to include.  Keep the answers short and to the point; you'll probably edit them later. NOTE; There will be a question about the availability of a 'Usage Video' referencing an mp4 file named './assets/videos/usage-link.url'.  If you want to supply a usage video you will reply (y) to the prompt, but you must previously create an mp4 formatted video and install it in github.  Here's how; create the mp4 file; drag and drop it into any git repository markdown file while viewing the markdown file in the github browser. The dropped mp4 file will be transformed to a URL pointing to the mp4 file saved in a unique user-images.githubusercontent.com location. Place that URL as the only line in the './assets/videos/usage-link.url' file.
+To execute the application, from the root directory of the readme-generator repository clone, run the command './index.js' or 'node index.js'.  This will walk the user through a series of questions.  You'll have to work through required vs default answers. The actual answers are not as important as all the sections you decide to include.  Keep the answers short and to the point; you'll probably edit them later. 
+
+NOTE; There will be a question about the availability of a 'Usage Video' referencing an mp4 file named './assets/videos/usage-link.url'.  If you want to supply a usage video you will reply (y) to the prompt, but you must previously create an mp4 formatted video and install it in github.  Here's how; create the mp4 file; drag and drop it into any git repository markdown file while viewing the markdown file in the github browser. The dropped mp4 file will be transformed to a URL pointing to the mp4 file saved in a unique user-images.githubusercontent.com location. Place that URL as the only line in the './assets/videos/usage-link.url' file.
+
+### Important
+
+The generated readme artifacts (README.md file plus various linked files and URLs) are all located in the ./dist/ directory after executing the readme generator (node index.js). Copy all the artifacts just as they appear in the ./dist/ directory to the root directory of you new project.
 
 ## Usage Video
 
